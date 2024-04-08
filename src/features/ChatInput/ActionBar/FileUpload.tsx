@@ -1,7 +1,7 @@
 import { ActionIcon, Icon } from '@lobehub/ui';
 import { Upload } from 'antd';
 import { useTheme } from 'antd-style';
-import { LucideImage, LucideLoader2 } from 'lucide-react';
+import { LucideImage, LucideFile, LucideLoader2 } from 'lucide-react';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Center } from 'react-layout-kit';
