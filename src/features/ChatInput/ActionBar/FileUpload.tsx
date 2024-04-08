@@ -75,7 +75,8 @@ const FileUpload = memo(() => {
   ]);
 
 
-  const [uploadedFiles, setUploadedFiles] = useState([]);
+   // 确保初始化状态时提供具体的类型注解
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
 
   // 修改 beforeUpload 函数以保存上传的文件信息
   const handleBeforeUpload = async (file: File) => {
