@@ -19,10 +19,10 @@ const FileUpload = memo(() => {
   const upload = useFileStore((s) => s.uploadFile);
 
   const model = useSessionStore(agentSelectors.currentAgentModel);
-  const [canUpload, enabledFiles] = useGlobalStore((s) => [
+  /*const [canUpload, enabledFiles] = useGlobalStore((s) => [
     modelProviderSelectors.modelEnabledUpload(model)(s),
     modelProviderSelectors.modelEnabledFiles(model)(s),
-  ]);
+  ]);*/
 
   return (
     <Upload
