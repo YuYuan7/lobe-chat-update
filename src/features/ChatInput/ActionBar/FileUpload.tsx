@@ -12,6 +12,55 @@ import { modelProviderSelectors } from '@/store/global/selectors';
 import { useSessionStore } from '@/store/session';
 import { agentSelectors } from '@/store/session/selectors';
 
+/*const FileUpload = memo(() => {
+  const { t } = useTranslation('chat');
+  const [loading, setLoading] = useState(false);
+  const theme = useTheme();
+  const upload = useFileStore((s) => s.uploadFile);
+
+  const model = useSessionStore(agentSelectors.currentAgentModel);
+  const [canUpload, enabledFiles] = useGlobalStore((s) => [
+    modelProviderSelectors.modelEnabledUpload(model)(s),
+    modelProviderSelectors.modelEnabledFiles(model)(s),
+  ]);
+
+  return (
+    <Upload
+      accept={enabledFiles ? undefined : 'image/*'}
+      beforeUpload={async (file) => {
+        setLoading(true);
+
+        await upload(file);
+
+        setLoading(false);
+        return false;
+      }}
+      disabled={!canUpload}
+      multiple={true}
+      showUploadList={false}
+    >
+      {loading ? (
+        <Center height={36} width={36}>
+          <Icon
+            color={theme.colorTextSecondary}
+            icon={LucideLoader2}
+            size={{ fontSize: 18 }}
+            spin
+          ></Icon>
+        </Center>
+      ) : (
+        <ActionIcon
+          disable={!canUpload}
+          icon={LucideImage}
+          placement={'bottom'}
+          title={t(canUpload ? 'upload.actionTooltip' : 'upload.disabled')}
+        />
+      )}
+    </Upload>
+  );
+});*/
+
+
 const FileUpload = memo(() => {
   const { t } = useTranslation('chat');
   const [loading, setLoading] = useState(false);
@@ -19,14 +68,12 @@ const FileUpload = memo(() => {
   const upload = useFileStore((s) => s.uploadFile);
 
   const model = useSessionStore(agentSelectors.currentAgentModel);
-  /*const [canUpload, enabledFiles] = useGlobalStore((s) => [
+  const [canUpload] = useGlobalStore((s) => [
     modelProviderSelectors.modelEnabledUpload(model)(s),
-    modelProviderSelectors.modelEnabledFiles(model)(s),
-  ]);*/
+  ]);
 
   return (
     <Upload
-      accept={enabledFiles ? undefined : 'image/*'}
       beforeUpload={async (file) => {
         setLoading(true);
 
