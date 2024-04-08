@@ -78,14 +78,14 @@ const FileUpload = memo(() => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
 
   // 修改 beforeUpload 函数以保存上传的文件信息
-  const handleBeforeUpload = async (file) => {
+  const handleBeforeUpload = async (file: File) => {
     setLoading(true);
-
-    await upload(file); // 假设这个函数会处理文件上传的逻辑
-
+  
+    await upload(file); // 使用明确的 File 类型
+  
     // 将文件添加到回显列表
     setUploadedFiles((prevFiles) => [...prevFiles, file]);
-
+  
     setLoading(false);
     return false; // 阻止 Upload 组件默认的上传行为
   };
