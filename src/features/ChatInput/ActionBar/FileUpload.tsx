@@ -11,6 +11,7 @@ import { useGlobalStore } from '@/store/global';
 import { modelProviderSelectors } from '@/store/global/selectors';
 import { useSessionStore } from '@/store/session';
 import { agentSelectors } from '@/store/session/selectors';
+import Image from 'next/image';
 
 /*const FileUpload = memo(() => {
   const { t } = useTranslation('chat');
@@ -69,10 +70,10 @@ const FileUpload = memo(() => {
   const upload = useFileStore((s) => s.uploadFile);
 
   const model = useSessionStore(agentSelectors.currentAgentModel);
-  const [canUpload, enabledFiles] = useGlobalStore((s) => [
+  const [canUpload] = useGlobalStore((s) => [
     modelProviderSelectors.modelEnabledUpload(model)(s),
-    modelProviderSelectors.modelEnabledFiles(model)(s),
-  ]);
+    // 移除了 enabledFiles，因为它没有被使用
+]);
 
 
    // 确保初始化状态时提供具体的类型注解
@@ -121,8 +122,14 @@ const FileUpload = memo(() => {
         {uploadedFiles.map((file, index) => (
           <div key={index}>
             {file.type.startsWith('image/') ? (
-              // 如果是图片文件，使用 img 元素显示
-              <img src={URL.createObjectURL(file)} alt={file.name} style={{ width: '100px' }} />
+              // 使用 Next.js 的 Image 组件代替原生 img 标签
+              <Image 
+                alt={file.name} 
+                height={100} 
+                layout="fixed"
+                src={URL.createObjectURL(file)} 
+                width={100} 
+              />
             ) : (
               // 如果是其他类型的文件，显示文件名称或图标
               <div>
